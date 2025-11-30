@@ -1,0 +1,7 @@
+C:\TOMÍK\8.M\Maturita\rp\rpAproximace\rpAproximace\bin\Debug\rpAproximace.exe.config
+C:\TOMÍK\8.M\Maturita\rp\rpAproximace\rpAproximace\bin\Debug\rpAproximace.exe
+C:\TOMÍK\8.M\Maturita\rp\rpAproximace\rpAproximace\bin\Debug\rpAproximace.pdb
+C:\TOMÍK\8.M\Maturita\rp\rpAproximace\rpAproximace\obj\Debug\rpAproximace.csproj.AssemblyReference.cache
+C:\TOMÍK\8.M\Maturita\rp\rpAproximace\rpAproximace\obj\Debug\rpAproximace.csproj.CoreCompileInputs.cache
+C:\TOMÍK\8.M\Maturita\rp\rpAproximace\rpAproximace\obj\Debug\rpAproximace.exe
+C:\TOMÍK\8.M\Maturita\rp\rpAproximace\rpAproximace\obj\Debug\rpAproximace.pdb
