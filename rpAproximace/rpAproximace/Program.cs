@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -42,9 +43,14 @@ namespace rpAproximace
 
             Console.WriteLine("Zde je sled vrcholů, který tvoří nejhůře 2krát delší cestu, než by byla ta optimální. Graf ale musí splňovat trojúhelníkovou nerovnost.");
             dvaAproximace aproxmacniAlgoritmus = new dvaAproximace(pocetVrcholu, maticeSousednosti);
-            aproxmacniAlgoritmus.Jarnik(pocetVrcholu, maticeSousednosti);
+            aproxmacniAlgoritmus.Jarnik(pocetVrcholu);
+            aproxmacniAlgoritmus.DFS();
+            Console.WriteLine(aproxmacniAlgoritmus.Cesta);
 
-            Console.WriteLine(aproxmacniAlgoritmus.DFS());
+            Console.WriteLine("Toto je délka cesty, kterou vyhodila 2-aproximace:");
+            Console.WriteLine(aproxmacniAlgoritmus.Delka);
+
+            
 
             Console.WriteLine("Toto je nejkratší hamiltonovská kružnice získaná pomocí Held-Karpova algoritmu.");
 
@@ -56,7 +62,10 @@ namespace rpAproximace
             BruteForce bruteForce = new BruteForce(pocetVrcholu);
             bruteForce.Permutace(maticeSousednosti, 0);
             Console.WriteLine(bruteForce.Tisk());
-            
+
+            Console.WriteLine("Toto je délka optimální cesty:");
+            Console.WriteLine(bruteForce.NejkratsiCesta);
+
             Console.ReadLine();
             
         }
@@ -139,21 +148,25 @@ namespace rpAproximace
     public class dvaAproximace
     {
 
-        public List<int>[] Sousedi {  get; set; }
+        private List<int>[] sousedi {  get; set; }
         private int[] vzdalenost {  get; set; }
         private bool[] vKostre { get; set; }
+        private int[,] _matice { get; }
+        public int Delka {  get; set; }
+        public string Cesta { get; set; }
 
         public dvaAproximace(int n, int[,] matice) // kvadratický čas, ale kružnice může být nejhůře 2krát dlouhá
         {
             vzdalenost = new int[n];
             vKostre = new bool[n];
-            Sousedi = new List<int>[n];
-
+            sousedi = new List<int>[n];
+            Delka = 0;
+            _matice = matice;
             for (int i = 0; i < n; i++)
             {
                 vzdalenost[i] = int.MaxValue;
                 vKostre[i] = false;
-                Sousedi[i] = new List<int>();
+                sousedi[i] = new List<int>();
             }
         }
         private int najdiMin(int k, int[] ints, bool[] bools)
@@ -171,7 +184,7 @@ namespace rpAproximace
             return minIndex;
         }
 
-        public void Jarnik(int n, int[,] matice)
+        public void Jarnik(int n)
         {
             int[] rodic = new int[n];
             rodic[0] = -1;
@@ -183,9 +196,9 @@ namespace rpAproximace
 
                 for (int j = 0; j < n; j++)
                 {
-                    if (matice[m,j] != 0 && !vKostre[j] && matice[m,j] < vzdalenost[j])
+                    if (_matice[m,j] != 0 && !vKostre[j] && _matice[m,j] < vzdalenost[j])
                     {
-                        vzdalenost[j] = matice[m, j];
+                        vzdalenost[j] = _matice[m, j];
                         rodic[j] = m;
                     }
                 }
@@ -194,20 +207,24 @@ namespace rpAproximace
             {
                 if (rodic[i] != -1)
                 {
-                    Sousedi[i].Add(rodic[i]);
-                    Sousedi[rodic[i]].Add(i);
+                    sousedi[i].Add(rodic[i]);
+                    sousedi[rodic[i]].Add(i);
                 }
             }
         }
-        public string DFS()
+        public void DFS()
         {
             StringBuilder sb = new StringBuilder();
-            int[] stav = new int[Sousedi.Length]; // 0 - nenalezený, 1 - nalezený,
+            int[] stav = new int[sousedi.Length]; // 0 - nenalezený, 1 - nalezený,
+            int posledni = -1;
             void _dfs(int n)
             {
                 stav[n] = 1;
                 sb.Append(n + " ");
-                foreach (int i in Sousedi[n])
+                if (posledni != -1)
+                    Delka += _matice[posledni, n];
+                posledni = n;
+                foreach (int i in sousedi[n])
                 {
                     if (stav[i] == 0)
                         _dfs(i);
@@ -215,7 +232,8 @@ namespace rpAproximace
             }
             _dfs(0);
             sb.Append(0);
-            return sb.ToString();
+            Delka += _matice[posledni, 0];
+            Cesta = sb.ToString();
         }
     }
 
@@ -307,14 +325,12 @@ namespace rpAproximace
 
     public class BruteForce
     {
-        private int nejkratsiCesta = int.MaxValue;
+        public int NejkratsiCesta = int.MaxValue;
         private int[] vyslednaCesta { get; set; }
-        private int pocetMest { get; }
         private int[] mesta { get; set; }
 
         public BruteForce(int n )
         {
-            pocetMest = n;
             mesta = new int[n - 1];
             for ( int i = 1; i < n ; i++ )
                 mesta[i - 1] = i;
@@ -339,9 +355,9 @@ namespace rpAproximace
 
             cena += ints[aktualniVrchol, 0]; // a skončím v nule
 
-            if (cena < nejkratsiCesta) // pokud je cesta kratší než jakákoliv dřív, přepíšu ji
+            if (cena < NejkratsiCesta) // pokud je cesta kratší než jakákoliv dřív, přepíšu ji
             {
-                nejkratsiCesta = cena; 
+                NejkratsiCesta = cena; 
                 for (int i = 0; i < mesta.Length; i++)  //potřebuji mít na první i na poslední pozici nulu
                     vyslednaCesta[i + 1] = mesta[i];
             }
