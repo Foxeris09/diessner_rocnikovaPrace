@@ -1,0 +1,10 @@
+// Validating benchmarks:
+// Benchmark MujBenchmark.Aproximace: DefaultJob
+//    * Benchmarked method `Aproximace` is within a non-visible class, all declaring types must be public.
+
+// Benchmark MujBenchmark.Dynamicke: DefaultJob
+//    * Benchmarked method `Dynamicke` is within a non-visible class, all declaring types must be public.
+
+// Benchmark MujBenchmark.HrubaSila: DefaultJob
+//    * Benchmarked method `HrubaSila` is within a non-visible class, all declaring types must be public.
+
