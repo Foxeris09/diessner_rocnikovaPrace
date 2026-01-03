@@ -15,19 +15,19 @@ namespace rpAproximace
     {
         static void Main(string[] args)
         {
-
-
+            //možnost vložit matici do terminálu v horním schodovitém tvaru
+            
             Console.WriteLine("Kolik vrcholů má graf?");
             int pocetVrcholu = Convert.ToInt16(Console.ReadLine());
             int[,] maticeSousednosti = new int[pocetVrcholu,pocetVrcholu];
             Console.WriteLine("Teď na dalších (počet vrcholů mínus jedna) řádků vypiš matici sousednosti v horním schodovitém tvaru. Čísla odděluj mezerou.");
             input(pocetVrcholu,  maticeSousednosti);
-            
 
-
+            //menchmark pro měření složitostí
             //BenchmarkRunner.Run<MujBenchmark>(); //pro spuštění benchmarku v mainu zakomentuj vše, ktromě tohoto řádku. Následně odkomentuj classu MujBenchmark, nakoře přepni spuštění z Debug na Release a dej Ctrl + F5
 
-            /*int pocetVrcholu = 9;
+            //možnost vypsat vlastní matici
+            /*  
             int[,] maticeSousednosti = new int[,] {
                     { 0, 15, 42, 54, 21, 63, 33, 48, 12 },
                     { 15, 0, 31, 45, 18, 55, 24, 39, 10 },
@@ -39,6 +39,12 @@ namespace rpAproximace
                     { 48, 39, 21, 15, 30, 22, 18, 0, 45 },
                     { 12, 10, 38, 50, 24, 58, 32, 45, 0 }
                 };
+            */
+
+            // možnost vygenerování matice
+            /* 
+            int pocetVrcholu = 5;
+            int[,] maticeSousednosti = GeneraceMatice(pocetVrcholu);
             */
 
             Console.WriteLine("Zde je sled vrcholů, který tvoří nejhůře 2krát delší cestu, než by byla ta optimální. Graf ale musí splňovat trojúhelníkovou nerovnost.");
@@ -70,55 +76,9 @@ namespace rpAproximace
             
         }
 
-        /*
-        [MemoryDiagnoser]
-        public class MujBenchmark
-        {
-            private int[,] matice;
-            private int n;
-
-            [GlobalSetup]
-            public void Setup() 
-            {
-                n = 9;
-                matice = new int[,] {
-                    { 0, 15, 42, 54, 21, 63, 33, 48, 12 },
-                    { 15, 0, 31, 45, 18, 55, 24, 39, 10 },
-                    { 42, 31, 0, 18, 25, 33, 14, 21, 38 },
-                    { 54, 45, 18, 0, 39, 21, 28, 15, 50 },
-                    { 21, 18, 25, 39, 0, 48, 15, 30, 24 },
-                    { 63, 55, 33, 21, 48, 0, 38, 22, 58 },
-                    { 33, 24, 14, 28, 15, 38, 0, 18, 32 },
-                    { 48, 39, 21, 15, 30, 22, 18, 0, 45 },
-                    { 12, 10, 38, 50, 24, 58, 32, 45, 0 }
-                };
-            }
-            
-
-            [Benchmark]
-            public string Aproximace()
-            {
-                dvaAproximace alg = new dvaAproximace(n, matice);
-                alg.Jarnik(n, matice);
-                return alg.DFS();
-            }
-
-            [Benchmark]
-            public string HeldKarp()
-            {
-                HeldKarp heldKarp = new HeldKarp(matice, n);
-                return heldKarp.ProhledaniVsech(matice);
-            }
-
-            [Benchmark]
-            public string HrubaSila()
-            {
-                BruteForce bruteForce = new BruteForce(n);
-                bruteForce.Permutace(matice, 0);
-                return bruteForce.Tisk();
-            }
-        }
-        */
+        
+        
+        
 
 
         /// <summary>
@@ -142,9 +102,84 @@ namespace rpAproximace
                 k += 1;
             }
         }
-    }
 
-    
+        /// <summary>
+        /// Funkce pro vygenerování matice sousednosti grafu, ktarý splňuje trojůhelníkovou nerovnost
+        /// </summary>
+        /// <param name="m">počet vrcholů</param>
+        /// <returns></returns>
+        public static int[,] GeneraceMatice(int m)
+        {
+            Random random = new Random();
+            int[,] vyslednaMatice = new int[m, m];
+            int maxSouradnice = 500;
+            List<(int X, int Y)> mesta = new List<(int X, int Y)>();
+
+            for (int i = 0; i < m; i++)
+            {
+                mesta.Add((random.Next(0, maxSouradnice), random.Next(0, maxSouradnice)));
+            }
+
+            for (int i = 0; i < m; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (i != j)
+                    {
+                        int vektorX = mesta[i].X - mesta[j].X;
+                        int vektorY = mesta[i].Y - mesta[j].Y;
+
+                        double velikostVektoru = Math.Sqrt((vektorX * vektorX) + (vektorY * vektorY));
+                        vyslednaMatice[i, j] = Convert.ToInt32(Math.Ceiling(velikostVektoru)); //ceiling vrací hodnotu zaokrouhlenou nahoru
+                    }
+                }
+            }
+            return vyslednaMatice;
+        }
+    }
+    /*
+    [MemoryDiagnoser]
+    public class MujBenchmark
+    {
+        private int[,] matice;
+        private int n;
+
+        [GlobalSetup]
+        public void Setup()
+        {
+            n = 5;
+            matice = Program.GeneraceMatice(n);
+        }
+
+        
+
+
+        [Benchmark]
+        public string Aproximace()
+        {
+            dvaAproximace alg = new dvaAproximace(n, matice);
+            alg.Jarnik(n);
+            alg.DFS();
+            return alg.Cesta;
+        }
+
+        [Benchmark]
+        public string HeldKarp()
+        {
+            HeldKarp heldKarp = new HeldKarp(matice, n);
+            return heldKarp.ProhledaniVsech(matice);
+        }
+
+        [Benchmark]
+        public string HrubaSila()
+        {
+            BruteForce bruteForce = new BruteForce(n);
+            bruteForce.Permutace(matice, 0);
+            return bruteForce.Tisk();
+        }
+    }
+    */
+
     public class dvaAproximace
     {
 

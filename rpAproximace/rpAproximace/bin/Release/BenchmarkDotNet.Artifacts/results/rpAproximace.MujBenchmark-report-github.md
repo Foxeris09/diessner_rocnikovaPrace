@@ -9,6 +9,6 @@ BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.7462/25H2/2025Update/HudsonValle
 ```
 | Method     | Mean         | Error        | StdDev       | Gen0   | Gen1   | Allocated |
 |----------- |-------------:|-------------:|-------------:|-------:|-------:|----------:|
-| Aproximace |     991.4 ns |      4.08 ns |      3.62 ns | 0.2384 |      - |    1254 B |
-| HeldKarp   |  42,562.4 ns |    242.18 ns |    202.23 ns | 7.1411 | 0.7324 |   37529 B |
-| HrubaSila  | 678,253.6 ns | 13,412.88 ns | 15,446.30 ns |      - |      - |     672 B |
+| Aproximace |     989.6 ns |      6.78 ns |      5.66 ns | 0.2384 |      - |    1254 B |
+| HeldKarp   |  46,206.4 ns |    918.42 ns |  1,429.86 ns | 7.1411 | 0.7324 |   37529 B |
+| HrubaSila  | 671,671.3 ns | 11,492.01 ns | 10,187.37 ns |      - |      - |     672 B |
