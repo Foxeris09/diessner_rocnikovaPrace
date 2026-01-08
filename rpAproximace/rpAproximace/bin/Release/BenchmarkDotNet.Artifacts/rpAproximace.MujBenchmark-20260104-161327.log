@@ -1,0 +1,247 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 2 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+BuildScript: C:\TOMÍK\8.M\Maturita\diessner_rocnikovaPrace\rpAproximace\rpAproximace\bin\Release\rpAproximace-DefaultJob-1.bat
+// ***** Done, took 00:00:02 (2.03 sec)   *****
+// Found 2 benchmarks:
+//   MujBenchmark.Aproximace: DefaultJob
+//   MujBenchmark.HeldKarp: DefaultJob
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Vysoký výkon)
+// **************************
+// Benchmark: MujBenchmark.Aproximace: DefaultJob
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: C:\TOMÍK\8.M\Maturita\diessner_rocnikovaPrace\rpAproximace\rpAproximace\bin\Release\rpAproximace-DefaultJob-1.exe --anonymousPipes 1752 1736 --benchmarkName rpAproximace.MujBenchmark.Aproximace --job Default --benchmarkId 0 in 
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET Framework 4.8.1 (4.8.9221.0), X86 LegacyJIT
+// GC=Concurrent Workstation
+// HardwareIntrinsics= 
+// Job: DefaultJob
+
+OverheadJitting  1: 1 op, 166000.00 ns, 166.0000 us/op
+WorkloadJitting  1: 1 op, 1293500.00 ns, 1.2935 ms/op
+
+OverheadJitting  2: 16 op, 394800.00 ns, 24.6750 us/op
+WorkloadJitting  2: 16 op, 424900.00 ns, 26.5563 us/op
+
+WorkloadPilot    1: 16 op, 82500.00 ns, 5.1563 us/op
+WorkloadPilot    2: 32 op, 146600.00 ns, 4.5813 us/op
+WorkloadPilot    3: 64 op, 276200.00 ns, 4.3156 us/op
+WorkloadPilot    4: 128 op, 542200.00 ns, 4.2359 us/op
+WorkloadPilot    5: 256 op, 1083500.00 ns, 4.2324 us/op
+WorkloadPilot    6: 512 op, 2082400.00 ns, 4.0672 us/op
+WorkloadPilot    7: 1024 op, 4240700.00 ns, 4.1413 us/op
+WorkloadPilot    8: 2048 op, 8078100.00 ns, 3.9444 us/op
+WorkloadPilot    9: 4096 op, 14394600.00 ns, 3.5143 us/op
+WorkloadPilot   10: 8192 op, 29206200.00 ns, 3.5652 us/op
+WorkloadPilot   11: 16384 op, 58801000.00 ns, 3.5889 us/op
+WorkloadPilot   12: 32768 op, 125065900.00 ns, 3.8167 us/op
+WorkloadPilot   13: 65536 op, 247990300.00 ns, 3.7840 us/op
+WorkloadPilot   14: 131072 op, 482393400.00 ns, 3.6804 us/op
+WorkloadPilot   15: 262144 op, 1104104600.00 ns, 4.2118 us/op
+
+OverheadWarmup   1: 262144 op, 1320000.00 ns, 5.0354 ns/op
+OverheadWarmup   2: 262144 op, 1344900.00 ns, 5.1304 ns/op
+OverheadWarmup   3: 262144 op, 1339900.00 ns, 5.1113 ns/op
+OverheadWarmup   4: 262144 op, 1935300.00 ns, 7.3826 ns/op
+OverheadWarmup   5: 262144 op, 1624200.00 ns, 6.1958 ns/op
+
+OverheadActual   1: 262144 op, 1353400.00 ns, 5.1628 ns/op
+OverheadActual   2: 262144 op, 1301800.00 ns, 4.9660 ns/op
+OverheadActual   3: 262144 op, 1259700.00 ns, 4.8054 ns/op
+OverheadActual   4: 262144 op, 1274800.00 ns, 4.8630 ns/op
+OverheadActual   5: 262144 op, 1272300.00 ns, 4.8534 ns/op
+OverheadActual   6: 262144 op, 1561300.00 ns, 5.9559 ns/op
+OverheadActual   7: 262144 op, 1290700.00 ns, 4.9236 ns/op
+OverheadActual   8: 262144 op, 1274700.00 ns, 4.8626 ns/op
+OverheadActual   9: 262144 op, 1257300.00 ns, 4.7962 ns/op
+OverheadActual  10: 262144 op, 1283500.00 ns, 4.8962 ns/op
+OverheadActual  11: 262144 op, 1433100.00 ns, 5.4668 ns/op
+OverheadActual  12: 262144 op, 1261600.00 ns, 4.8126 ns/op
+OverheadActual  13: 262144 op, 1380800.00 ns, 5.2673 ns/op
+OverheadActual  14: 262144 op, 1395100.00 ns, 5.3219 ns/op
+OverheadActual  15: 262144 op, 1567200.00 ns, 5.9784 ns/op
+OverheadActual  16: 262144 op, 1264600.00 ns, 4.8241 ns/op
+OverheadActual  17: 262144 op, 1828000.00 ns, 6.9733 ns/op
+OverheadActual  18: 262144 op, 1707300.00 ns, 6.5128 ns/op
+OverheadActual  19: 262144 op, 1801900.00 ns, 6.8737 ns/op
+OverheadActual  20: 262144 op, 1257700.00 ns, 4.7977 ns/op
+
+WorkloadWarmup   1: 262144 op, 1616409000.00 ns, 6.1661 us/op
+WorkloadWarmup   2: 262144 op, 1569727000.00 ns, 5.9880 us/op
+WorkloadWarmup   3: 262144 op, 1549084700.00 ns, 5.9093 us/op
+WorkloadWarmup   4: 262144 op, 1586887700.00 ns, 6.0535 us/op
+WorkloadWarmup   5: 262144 op, 1573517600.00 ns, 6.0025 us/op
+WorkloadWarmup   6: 262144 op, 1560150600.00 ns, 5.9515 us/op
+WorkloadWarmup   7: 262144 op, 1513178600.00 ns, 5.7723 us/op
+WorkloadWarmup   8: 262144 op, 1515572800.00 ns, 5.7815 us/op
+WorkloadWarmup   9: 262144 op, 1533535400.00 ns, 5.8500 us/op
+WorkloadWarmup  10: 262144 op, 1572816800.00 ns, 5.9998 us/op
+WorkloadWarmup  11: 262144 op, 1574054100.00 ns, 6.0045 us/op
+WorkloadWarmup  12: 262144 op, 1590737900.00 ns, 6.0682 us/op
+WorkloadWarmup  13: 262144 op, 1563695300.00 ns, 5.9650 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 262144 op, 1611714600.00 ns, 6.1482 us/op
+WorkloadActual   2: 262144 op, 1601111200.00 ns, 6.1078 us/op
+WorkloadActual   3: 262144 op, 1537721200.00 ns, 5.8659 us/op
+WorkloadActual   4: 262144 op, 1571589100.00 ns, 5.9951 us/op
+WorkloadActual   5: 262144 op, 1544992900.00 ns, 5.8937 us/op
+WorkloadActual   6: 262144 op, 1568558200.00 ns, 5.9836 us/op
+WorkloadActual   7: 262144 op, 1669234100.00 ns, 6.3676 us/op
+WorkloadActual   8: 262144 op, 1544110800.00 ns, 5.8903 us/op
+WorkloadActual   9: 262144 op, 1538462200.00 ns, 5.8688 us/op
+WorkloadActual  10: 262144 op, 1563038700.00 ns, 5.9625 us/op
+WorkloadActual  11: 262144 op, 1580963100.00 ns, 6.0309 us/op
+WorkloadActual  12: 262144 op, 1593095600.00 ns, 6.0772 us/op
+WorkloadActual  13: 262144 op, 1580852700.00 ns, 6.0305 us/op
+WorkloadActual  14: 262144 op, 1522885400.00 ns, 5.8093 us/op
+WorkloadActual  15: 262144 op, 1513623700.00 ns, 5.7740 us/op
+WorkloadActual  16: 262144 op, 1551208900.00 ns, 5.9174 us/op
+
+// AfterActualRun
+WorkloadResult   1: 262144 op, 1610418350.00 ns, 6.1433 us/op
+WorkloadResult   2: 262144 op, 1599814950.00 ns, 6.1028 us/op
+WorkloadResult   3: 262144 op, 1536424950.00 ns, 5.8610 us/op
+WorkloadResult   4: 262144 op, 1570292850.00 ns, 5.9902 us/op
+WorkloadResult   5: 262144 op, 1543696650.00 ns, 5.8887 us/op
+WorkloadResult   6: 262144 op, 1567261950.00 ns, 5.9786 us/op
+WorkloadResult   7: 262144 op, 1542814550.00 ns, 5.8854 us/op
+WorkloadResult   8: 262144 op, 1537165950.00 ns, 5.8638 us/op
+WorkloadResult   9: 262144 op, 1561742450.00 ns, 5.9576 us/op
+WorkloadResult  10: 262144 op, 1579666850.00 ns, 6.0260 us/op
+WorkloadResult  11: 262144 op, 1591799350.00 ns, 6.0722 us/op
+WorkloadResult  12: 262144 op, 1579556450.00 ns, 6.0255 us/op
+WorkloadResult  13: 262144 op, 1521589150.00 ns, 5.8044 us/op
+WorkloadResult  14: 262144 op, 1512327450.00 ns, 5.7691 us/op
+WorkloadResult  15: 262144 op, 1549912650.00 ns, 5.9124 us/op
+// GC:  153 1 0 806486536 262144
+// Threading:  0 0 262144
+
+// AfterAll
+// Benchmark Process 28436 has exited with code 0.
+
+Mean = 5.952 μs, StdErr = 0.028 μs (0.48%), N = 15, StdDev = 0.110 μs
+Min = 5.769 μs, Q1 = 5.875 μs, Median = 5.958 μs, Q3 = 6.026 μs, Max = 6.143 μs
+IQR = 0.151 μs, LowerFence = 5.648 μs, UpperFence = 6.252 μs
+ConfidenceInterval = [5.835 μs; 6.069 μs] (CI 99.9%), Margin = 0.117 μs (1.97% of Mean)
+Skewness = 0.08, Kurtosis = 1.8, MValue = 2
+
+// ** Remained 1 (50,0 %) benchmark(s) to run. Estimated finish 2026-01-04 16:15 (0h 0m from now) **
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Vysoký výkon)
+// **************************
+// Benchmark: MujBenchmark.HeldKarp: DefaultJob
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: C:\TOMÍK\8.M\Maturita\diessner_rocnikovaPrace\rpAproximace\rpAproximace\bin\Release\rpAproximace-DefaultJob-1.exe --anonymousPipes 1776 1796 --benchmarkName rpAproximace.MujBenchmark.HeldKarp --job Default --benchmarkId 1 in 
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET Framework 4.8.1 (4.8.9221.0), X86 LegacyJIT
+// GC=Concurrent Workstation
+// HardwareIntrinsics= 
+// Job: DefaultJob
+
+OverheadJitting  1: 1 op, 234400.00 ns, 234.4000 us/op
+
+OutOfMemoryException!
+BenchmarkDotNet continues to run additional iterations until desired accuracy level is achieved. It's possible only if the benchmark method doesn't have any side-effects.
+If your benchmark allocates memory and keeps it alive, you are creating a memory leak.
+You should redesign your benchmark and remove the side-effects. You can use `OperationsPerInvoke`, `IterationSetup` and `IterationCleanup` to do that.
+
+System.Reflection.TargetInvocationException: Cíl vyvolání způsobil výjimku. ---> System.OutOfMemoryException: Byla vyvolána výjimka typu System.OutOfMemoryException.
+   v rpAproximace.HeldKarp..ctor(Int32[,] matice, Int32 m) v C:\TOMÍK\8.M\Maturita\diessner_rocnikovaPrace\rpAproximace\rpAproximace\Program.cs:řádek 284
+   v rpAproximace.MujBenchmark.HeldKarp() v C:\TOMÍK\8.M\Maturita\diessner_rocnikovaPrace\rpAproximace\rpAproximace\Program.cs:řádek 169
+   v BenchmarkDotNet.Autogenerated.Runnable_1.WorkloadActionNoUnroll(Int64 invokeCount)
+   v BenchmarkDotNet.Engines.Engine.Measure(Action`1 action, Int64 invokeCount)
+   v BenchmarkDotNet.Engines.Engine.RunIteration(IterationData data)
+   v BenchmarkDotNet.Engines.EngineFactory.Jit(Engine engine, Int32 jitIndex, Int32 invokeCount, Int32 unrollFactor)
+   v BenchmarkDotNet.Engines.EngineFactory.CreateReadyToRun(EngineParameters engineParameters)
+   v BenchmarkDotNet.Autogenerated.Runnable_1.Run(IHost host, String benchmarkName)
+   --- Konec trasování zásobníku pro vnitřní výjimku ---
+   v System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor)
+   v System.Reflection.RuntimeMethodInfo.UnsafeInvokeInternal(Object obj, Object[] parameters, Object[] arguments)
+   v System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   v BenchmarkDotNet.Autogenerated.UniqueProgramName.AfterAssemblyLoadingAttached(String[] args)
+// AfterAll
+No Workload Results were obtained from the run.
+// Benchmark Process 17940 has exited with code -1.
+
+// ** Remained 0 (0,0 %) benchmark(s) to run. Estimated finish 2026-01-04 16:14 (0h 0m from now) **
+Successfully reverted power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Vysoký výkon)
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts\results\rpAproximace.MujBenchmark-report.csv
+  BenchmarkDotNet.Artifacts\results\rpAproximace.MujBenchmark-report-github.md
+  BenchmarkDotNet.Artifacts\results\rpAproximace.MujBenchmark-report.html
+
+// * Detailed results *
+MujBenchmark.Aproximace: DefaultJob
+Runtime = .NET Framework 4.8.1 (4.8.9221.0), X86 LegacyJIT; GC = Concurrent Workstation
+Mean = 5.952 μs, StdErr = 0.028 μs (0.48%), N = 15, StdDev = 0.110 μs
+Min = 5.769 μs, Q1 = 5.875 μs, Median = 5.958 μs, Q3 = 6.026 μs, Max = 6.143 μs
+IQR = 0.151 μs, LowerFence = 5.648 μs, UpperFence = 6.252 μs
+ConfidenceInterval = [5.835 μs; 6.069 μs] (CI 99.9%), Margin = 0.117 μs (1.97% of Mean)
+Skewness = 0.08, Kurtosis = 1.8, MValue = 2
+-------------------- Histogram --------------------
+[5.711 μs ; 5.850 μs) | @@
+[5.850 μs ; 6.202 μs) | @@@@@@@@@@@@@
+---------------------------------------------------
+
+MujBenchmark.HeldKarp: DefaultJob
+Runtime = .NET Framework 4.8.1 (4.8.9221.0), X86 LegacyJIT; GC = Concurrent Workstation
+There are not any results runs
+
+// * Summary *
+
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.7462/25H2/2025Update/HudsonValley2)
+12th Gen Intel Core i5-12450H 2.00GHz, 1 CPU, 12 logical and 8 physical cores
+  [Host]     : .NET Framework 4.8.1 (4.8.9221.0), X86 LegacyJIT
+  DefaultJob : .NET Framework 4.8.1 (4.8.9221.0), X86 LegacyJIT
+
+
+| Method     | Mean     | Error     | StdDev    | Gen0   | Gen1   | Allocated |
+|----------- |---------:|----------:|----------:|-------:|-------:|----------:|
+| Aproximace | 5.952 μs | 0.1172 μs | 0.1096 μs | 0.5836 | 0.0038 |      3 KB |
+| HeldKarp   |       NA |        NA |        NA |     NA |     NA |        NA |
+
+Benchmarks with issues:
+  MujBenchmark.HeldKarp: DefaultJob
+
+// * Warnings *
+Environment
+  Summary -> Detected error exit code from one of the benchmarks. It might be caused by following antivirus software:
+        - Windows Defender (windowsdefender://)
+        - McAfee (\\?\C:\Program Files\McAfee\WPS\1.35.148.1\mc-fw-host.exe)
+Use InProcessEmitToolchain or InProcessNoEmitToolchain to avoid new process creation.
+
+
+// * Hints *
+Outliers
+  MujBenchmark.Aproximace: Default -> 1 outlier  was  removed (6.37 μs)
+
+// * Legends *
+  Mean      : Arithmetic mean of all measurements
+  Error     : Half of 99.9% confidence interval
+  StdDev    : Standard deviation of all measurements
+  Gen0      : GC Generation 0 collects per 1000 operations
+  Gen1      : GC Generation 1 collects per 1000 operations
+  Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 μs      : 1 Microsecond (0.000001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+Run time: 00:00:50 (50.26 sec), executed benchmarks: 2
+
+Global total time: 00:00:53 (53.64 sec), executed benchmarks: 2
+// * Artifacts cleanup *
+Artifacts cleanup is finished

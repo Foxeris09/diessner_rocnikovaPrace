@@ -1,0 +1,80 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 3 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+BuildScript: C:\TOMÍK\8.M\Maturita\diessner_rocnikovaPrace\rpAproximace\rpAproximace\bin\Release\rpAproximace-DefaultJob-1.bat
+// ***** Done, took 00:00:02 (2.1 sec)   *****
+// Found 3 benchmarks:
+//   MujBenchmark.Aproximace: DefaultJob
+//   MujBenchmark.HeldKarp: DefaultJob
+//   MujBenchmark.HrubaSila: DefaultJob
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Vysoký výkon)
+// **************************
+// Benchmark: MujBenchmark.Aproximace: DefaultJob
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: C:\TOMÍK\8.M\Maturita\diessner_rocnikovaPrace\rpAproximace\rpAproximace\bin\Release\rpAproximace-DefaultJob-1.exe --anonymousPipes 1792 1788 --benchmarkName rpAproximace.MujBenchmark.Aproximace --job Default --benchmarkId 0 in 
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET Framework 4.8.1 (4.8.9221.0), X86 LegacyJIT
+// GC=Concurrent Workstation
+// HardwareIntrinsics= 
+// Job: DefaultJob
+
+OverheadJitting  1: 1 op, 157500.00 ns, 157.5000 us/op
+WorkloadJitting  1: 1 op, 1276700.00 ns, 1.2767 ms/op
+
+OverheadJitting  2: 16 op, 354400.00 ns, 22.1500 us/op
+WorkloadJitting  2: 16 op, 454000.00 ns, 28.3750 us/op
+
+WorkloadPilot    1: 16 op, 43900.00 ns, 2.7438 us/op
+WorkloadPilot    2: 32 op, 84400.00 ns, 2.6375 us/op
+WorkloadPilot    3: 64 op, 153400.00 ns, 2.3969 us/op
+WorkloadPilot    4: 128 op, 308100.00 ns, 2.4070 us/op
+WorkloadPilot    5: 256 op, 585100.00 ns, 2.2855 us/op
+WorkloadPilot    6: 512 op, 1253800.00 ns, 2.4488 us/op
+WorkloadPilot    7: 1024 op, 2350800.00 ns, 2.2957 us/op
+WorkloadPilot    8: 2048 op, 4795000.00 ns, 2.3413 us/op
+WorkloadPilot    9: 4096 op, 8484600.00 ns, 2.0714 us/op
+WorkloadPilot   10: 8192 op, 15692800.00 ns, 1.9156 us/op
+WorkloadPilot   11: 16384 op, 31096300.00 ns, 1.8980 us/op
+WorkloadPilot   12: 32768 op, 61411900.00 ns, 1.8741 us/op
+WorkloadPilot   13: 65536 op, 120759800.00 ns, 1.8426 us/op
+WorkloadPilot   14: 131072 op, 245069700.00 ns, 1.8697 us/op
+WorkloadPilot   15: 262144 op, 485212500.00 ns, 1.8509 us/op
+WorkloadPilot   16: 524288 op, 975679800.00 ns, 1.8610 us/op
+
+OverheadWarmup   1: 524288 op, 1379500.00 ns, 2.6312 ns/op
+OverheadWarmup   2: 524288 op, 1370100.00 ns, 2.6133 ns/op
+OverheadWarmup   3: 524288 op, 1358300.00 ns, 2.5908 ns/op
+OverheadWarmup   4: 524288 op, 1395900.00 ns, 2.6625 ns/op
+OverheadWarmup   5: 524288 op, 1385700.00 ns, 2.6430 ns/op
+OverheadWarmup   6: 524288 op, 1378300.00 ns, 2.6289 ns/op
+OverheadWarmup   7: 524288 op, 1338100.00 ns, 2.5522 ns/op
+OverheadWarmup   8: 524288 op, 1379200.00 ns, 2.6306 ns/op
+OverheadWarmup   9: 524288 op, 1410500.00 ns, 2.6903 ns/op
+OverheadWarmup  10: 524288 op, 1382800.00 ns, 2.6375 ns/op
+
+OverheadActual   1: 524288 op, 1354100.00 ns, 2.5827 ns/op
+OverheadActual   2: 524288 op, 1388600.00 ns, 2.6485 ns/op
+OverheadActual   3: 524288 op, 1384400.00 ns, 2.6405 ns/op
+OverheadActual   4: 524288 op, 1415200.00 ns, 2.6993 ns/op
+OverheadActual   5: 524288 op, 1370600.00 ns, 2.6142 ns/op
+OverheadActual   6: 524288 op, 1377900.00 ns, 2.6281 ns/op
+OverheadActual   7: 524288 op, 1354200.00 ns, 2.5829 ns/op
+OverheadActual   8: 524288 op, 1393900.00 ns, 2.6587 ns/op
+OverheadActual   9: 524288 op, 1536100.00 ns, 2.9299 ns/op
+OverheadActual  10: 524288 op, 1314100.00 ns, 2.5064 ns/op
+OverheadActual  11: 524288 op, 1369600.00 ns, 2.6123 ns/op
+OverheadActual  12: 524288 op, 1372500.00 ns, 2.6178 ns/op
+OverheadActual  13: 524288 op, 1386000.00 ns, 2.6436 ns/op
+OverheadActual  14: 524288 op, 1368500.00 ns, 2.6102 ns/op
+OverheadActual  15: 524288 op, 1545000.00 ns, 2.9469 ns/op
+
+WorkloadWarmup   1: 524288 op, 994588200.00 ns, 1.8970 us/op
+WorkloadWarmup   2: 524288 op, 1017833100.00 ns, 1.9414 us/op
+WorkloadWarmup   3: 524288 op, 1291649500.00 ns, 2.4636 us/op
+WorkloadWarmup   4: 524288 op, 1664602300.00 ns, 3.1750 

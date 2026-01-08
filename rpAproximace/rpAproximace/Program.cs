@@ -7,6 +7,8 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
 namespace rpAproximace
@@ -15,16 +17,18 @@ namespace rpAproximace
     {
         static void Main(string[] args)
         {
+
             //možnost vložit matici do terminálu v horním schodovitém tvaru
-            
+            /*
             Console.WriteLine("Kolik vrcholů má graf?");
             int pocetVrcholu = Convert.ToInt16(Console.ReadLine());
             int[,] maticeSousednosti = new int[pocetVrcholu,pocetVrcholu];
             Console.WriteLine("Teď na dalších (počet vrcholů mínus jedna) řádků vypiš matici sousednosti v horním schodovitém tvaru. Čísla odděluj mezerou.");
             input(pocetVrcholu,  maticeSousednosti);
+            */
 
             //menchmark pro měření složitostí
-            //BenchmarkRunner.Run<MujBenchmark>(); //pro spuštění benchmarku v mainu zakomentuj vše, ktromě tohoto řádku. Následně odkomentuj classu MujBenchmark, nakoře přepni spuštění z Debug na Release a dej Ctrl + F5
+            //BenchmarkRunner.Run<MujBenchmark>(); //pro spuštění benchmarku v mainu zakomentuj vše, ktromě tohoto řádku. Následně odkomentuj classu MujBenchmark, nakoře přepni spuštění z Debug na Release a dej spustit bez ladění(tlačítko nahoře vedle klasického spustit)
 
             //možnost vypsat vlastní matici
             /*  
@@ -42,11 +46,11 @@ namespace rpAproximace
             */
 
             // možnost vygenerování matice
-            /* 
+            
             int pocetVrcholu = 5;
             int[,] maticeSousednosti = GeneraceMatice(pocetVrcholu);
-            */
-
+            
+            
             Console.WriteLine("Zde je sled vrcholů, který tvoří nejhůře 2krát delší cestu, než by byla ta optimální. Graf ale musí splňovat trojúhelníkovou nerovnost.");
             dvaAproximace aproxmacniAlgoritmus = new dvaAproximace(pocetVrcholu, maticeSousednosti);
             aproxmacniAlgoritmus.Jarnik(pocetVrcholu);
@@ -137,23 +141,22 @@ namespace rpAproximace
             return vyslednaMatice;
         }
     }
-    /*
+
+    [SimpleJob(RuntimeMoniker.Net80)]
     [MemoryDiagnoser]
     public class MujBenchmark
     {
-        private int[,] matice;
-        private int n;
+        private int[,] matice { get; set; }
+        private int n { get; set; }
 
         [GlobalSetup]
         public void Setup()
         {
-            n = 5;
+            n = 20;
             matice = Program.GeneraceMatice(n);
         }
 
         
-
-
         [Benchmark]
         public string Aproximace()
         {
@@ -162,14 +165,15 @@ namespace rpAproximace
             alg.DFS();
             return alg.Cesta;
         }
-
+        
         [Benchmark]
         public string HeldKarp()
         {
             HeldKarp heldKarp = new HeldKarp(matice, n);
             return heldKarp.ProhledaniVsech(matice);
         }
-
+        
+        /*
         [Benchmark]
         public string HrubaSila()
         {
@@ -177,8 +181,10 @@ namespace rpAproximace
             bruteForce.Permutace(matice, 0);
             return bruteForce.Tisk();
         }
+        */
+        
     }
-    */
+    
 
     public class dvaAproximace
     {
@@ -360,13 +366,14 @@ namespace rpAproximace
 
     public class BruteForce
     {
-        public int NejkratsiCesta = int.MaxValue;
+        public int NejkratsiCesta { get; private set; }
         private int[] vyslednaCesta { get; set; }
         private int[] mesta { get; set; }
 
         public BruteForce(int n )
         {
             mesta = new int[n - 1];
+            NejkratsiCesta = int.MaxValue;
             for ( int i = 1; i < n ; i++ )
                 mesta[i - 1] = i;
             vyslednaCesta = new int[n + 1];
@@ -425,7 +432,4 @@ namespace rpAproximace
         }
 
     }
-
-
-
 }

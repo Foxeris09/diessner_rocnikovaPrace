@@ -1,0 +1,80 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 2 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+BuildScript: C:\TOMÍK\8.M\Maturita\diessner_rocnikovaPrace\rpAproximace\rpAproximace\bin\Release\rpAproximace-DefaultJob-1.bat
+// ***** Done, took 00:00:02 (2.02 sec)   *****
+// Found 2 benchmarks:
+//   MujBenchmark.Aproximace: DefaultJob
+//   MujBenchmark.HeldKarp: DefaultJob
+
+Setup power plan (GUID: 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c FriendlyName: Vysoký výkon)
+// **************************
+// Benchmark: MujBenchmark.Aproximace: DefaultJob
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: C:\TOMÍK\8.M\Maturita\diessner_rocnikovaPrace\rpAproximace\rpAproximace\bin\Release\rpAproximace-DefaultJob-1.exe --anonymousPipes 1796 1792 --benchmarkName rpAproximace.MujBenchmark.Aproximace --job Default --benchmarkId 0 in 
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// BenchmarkDotNet v0.15.8
+// Runtime=.NET Framework 4.8.1 (4.8.9221.0), X86 LegacyJIT
+// GC=Concurrent Workstation
+// HardwareIntrinsics= 
+// Job: DefaultJob
+
+OverheadJitting  1: 1 op, 149800.00 ns, 149.8000 us/op
+WorkloadJitting  1: 1 op, 1136600.00 ns, 1.1366 ms/op
+
+OverheadJitting  2: 16 op, 336200.00 ns, 21.0125 us/op
+WorkloadJitting  2: 16 op, 477200.00 ns, 29.8250 us/op
+
+WorkloadPilot    1: 16 op, 71200.00 ns, 4.4500 us/op
+WorkloadPilot    2: 32 op, 130800.00 ns, 4.0875 us/op
+WorkloadPilot    3: 64 op, 255600.00 ns, 3.9938 us/op
+WorkloadPilot    4: 128 op, 471000.00 ns, 3.6797 us/op
+WorkloadPilot    5: 256 op, 977900.00 ns, 3.8199 us/op
+WorkloadPilot    6: 512 op, 1960800.00 ns, 3.8297 us/op
+WorkloadPilot    7: 1024 op, 4040000.00 ns, 3.9453 us/op
+WorkloadPilot    8: 2048 op, 7643300.00 ns, 3.7321 us/op
+WorkloadPilot    9: 4096 op, 13209400.00 ns, 3.2250 us/op
+WorkloadPilot   10: 8192 op, 25361100.00 ns, 3.0958 us/op
+WorkloadPilot   11: 16384 op, 50017100.00 ns, 3.0528 us/op
+WorkloadPilot   12: 32768 op, 101100900.00 ns, 3.0854 us/op
+WorkloadPilot   13: 65536 op, 200014800.00 ns, 3.0520 us/op
+WorkloadPilot   14: 131072 op, 411868100.00 ns, 3.1423 us/op
+WorkloadPilot   15: 262144 op, 816464600.00 ns, 3.1146 us/op
+
+OverheadWarmup   1: 262144 op, 672000.00 ns, 2.5635 ns/op
+OverheadWarmup   2: 262144 op, 658500.00 ns, 2.5120 ns/op
+OverheadWarmup   3: 262144 op, 652600.00 ns, 2.4895 ns/op
+OverheadWarmup   4: 262144 op, 681300.00 ns, 2.5990 ns/op
+OverheadWarmup   5: 262144 op, 697200.00 ns, 2.6596 ns/op
+OverheadWarmup   6: 262144 op, 689000.00 ns, 2.6283 ns/op
+OverheadWarmup   7: 262144 op, 665100.00 ns, 2.5372 ns/op
+OverheadWarmup   8: 262144 op, 638500.00 ns, 2.4357 ns/op
+OverheadWarmup   9: 262144 op, 681400.00 ns, 2.5993 ns/op
+OverheadWarmup  10: 262144 op, 685200.00 ns, 2.6138 ns/op
+
+OverheadActual   1: 262144 op, 681500.00 ns, 2.5997 ns/op
+OverheadActual   2: 262144 op, 693600.00 ns, 2.6459 ns/op
+OverheadActual   3: 262144 op, 676000.00 ns, 2.5787 ns/op
+OverheadActual   4: 262144 op, 690100.00 ns, 2.6325 ns/op
+OverheadActual   5: 262144 op, 671300.00 ns, 2.5608 ns/op
+OverheadActual   6: 262144 op, 685900.00 ns, 2.6165 ns/op
+OverheadActual   7: 262144 op, 690900.00 ns, 2.6356 ns/op
+OverheadActual   8: 262144 op, 679600.00 ns, 2.5925 ns/op
+OverheadActual   9: 262144 op, 654200.00 ns, 2.4956 ns/op
+OverheadActual  10: 262144 op, 642600.00 ns, 2.4513 ns/op
+OverheadActual  11: 262144 op, 685300.00 ns, 2.6142 ns/op
+OverheadActual  12: 262144 op, 685300.00 ns, 2.6142 ns/op
+OverheadActual  13: 262144 op, 601500.00 ns, 2.2945 ns/op
+OverheadActual  14: 262144 op, 652300.00 ns, 2.4883 ns/op
+OverheadActual  15: 262144 op, 642200.00 ns, 2.4498 ns/op
+
+WorkloadWarmup   1: 262144 op, 802712500.00 ns, 3.0621 us/op
+WorkloadWarmup   2: 262144 op, 1063120600.00 ns, 4.0555 us/op
+WorkloadWarmup   3: 262144 op, 1320315000.00 ns, 5.0366 us/op
+WorkloadWarmup   4: 262144 op, 1454256200.00 ns, 5.5475 us/op
+WorkloadWarmup   5: 262144 op, 1406431200.00 ns, 5.3651 us/op
+WorkloadWarmup   6: 262144 op, 1271578700.00 ns, 4.850
