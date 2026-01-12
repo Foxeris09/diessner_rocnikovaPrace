@@ -11,7 +11,7 @@ using BenchmarkDotNet.Configs;
 using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
-namespace rpAproximace
+namespace RpAproximace
 {
     public class Program
     {
@@ -24,7 +24,7 @@ namespace rpAproximace
             int pocetVrcholu = Convert.ToInt16(Console.ReadLine());
             int[,] maticeSousednosti = new int[pocetVrcholu,pocetVrcholu];
             Console.WriteLine("Teď na dalších (počet vrcholů mínus jedna) řádků vypiš matici sousednosti v horním schodovitém tvaru. Čísla odděluj mezerou.");
-            input(pocetVrcholu,  maticeSousednosti);
+            NactiVstup(pocetVrcholu,  maticeSousednosti);
             */
 
             //menchmark pro měření složitostí
@@ -47,14 +47,14 @@ namespace rpAproximace
 
             // možnost vygenerování matice
             
-            int pocetVrcholu = 5;
-            int[,] maticeSousednosti = GeneraceMatice(pocetVrcholu);
+            int pocetVrcholu = 10;
+            int[,] maticeSousednosti = GenerovatMatici(pocetVrcholu);
             
             
             Console.WriteLine("Zde je sled vrcholů, který tvoří nejhůře 2krát delší cestu, než by byla ta optimální. Graf ale musí splňovat trojúhelníkovou nerovnost.");
-            dvaAproximace aproxmacniAlgoritmus = new dvaAproximace(pocetVrcholu, maticeSousednosti);
-            aproxmacniAlgoritmus.Jarnik(pocetVrcholu);
-            aproxmacniAlgoritmus.DFS();
+            DvaAproximace aproxmacniAlgoritmus = new DvaAproximace(pocetVrcholu, maticeSousednosti);
+            aproxmacniAlgoritmus.AlgoritmusJarnik(pocetVrcholu);
+            aproxmacniAlgoritmus.SpustitDfs();
             Console.WriteLine(aproxmacniAlgoritmus.Cesta);
 
             Console.WriteLine("Toto je délka cesty, kterou vyhodila 2-aproximace:");
@@ -65,12 +65,12 @@ namespace rpAproximace
             Console.WriteLine("Toto je nejkratší hamiltonovská kružnice získaná pomocí Held-Karpova algoritmu.");
 
             HeldKarp heldKarp = new HeldKarp(maticeSousednosti, pocetVrcholu);
-            Console.WriteLine(heldKarp.ProhledaniVsech(maticeSousednosti));
+            Console.WriteLine(heldKarp.ProhledatVse(maticeSousednosti));
 
             Console.WriteLine("Řešení hrubou silou.");
 
             BruteForce bruteForce = new BruteForce(pocetVrcholu);
-            bruteForce.Permutace(maticeSousednosti, 0);
+            bruteForce.GenerovatPermutace(maticeSousednosti, 0);
             Console.WriteLine(bruteForce.Tisk());
 
             Console.WriteLine("Toto je délka optimální cesty:");
@@ -90,7 +90,7 @@ namespace rpAproximace
         /// </summary>
         /// <param name="n">počet vrcholů</param>
         /// <param name="matice">matice sousednosti</param>
-        static void input(int n, int[,] matice) // vstup je matice sousednosti v horním schodovitém tvaru
+        static void NactiVstup(int n, int[,] matice) // vstup je matice sousednosti v horním schodovitém tvaru
         {
             int k = 1;
             
@@ -112,16 +112,16 @@ namespace rpAproximace
         /// </summary>
         /// <param name="m">počet vrcholů</param>
         /// <returns></returns>
-        public static int[,] GeneraceMatice(int m)
+        public static int[,] GenerovatMatici(int m)
         {
             Random random = new Random();
             int[,] vyslednaMatice = new int[m, m];
-            int maxSouradnice = 500;
+            int MaxSouradnice = 500;
             List<(int X, int Y)> mesta = new List<(int X, int Y)>();
 
             for (int i = 0; i < m; i++)
             {
-                mesta.Add((random.Next(0, maxSouradnice), random.Next(0, maxSouradnice)));
+                mesta.Add((random.Next(0, MaxSouradnice), random.Next(0, MaxSouradnice)));
             }
 
             for (int i = 0; i < m; i++)
@@ -146,100 +146,100 @@ namespace rpAproximace
     [MemoryDiagnoser]
     public class MujBenchmark
     {
-        private int[,] matice { get; set; }
-        private int n { get; set; }
+        private int[,] _matice;
+        private int _n;
 
         [GlobalSetup]
         public void Setup()
         {
-            n = 20;
-            matice = Program.GeneraceMatice(n);
+            _n = 20;
+            _matice = Program.GenerovatMatici(_n);
         }
 
         
         [Benchmark]
         public string Aproximace()
         {
-            dvaAproximace alg = new dvaAproximace(n, matice);
-            alg.Jarnik(n);
-            alg.DFS();
+            DvaAproximace alg = new DvaAproximace(_n, _matice);
+            alg.AlgoritmusJarnik(_n);
+            alg.SpustitDfs();
             return alg.Cesta;
         }
         
         [Benchmark]
         public string HeldKarp()
         {
-            HeldKarp heldKarp = new HeldKarp(matice, n);
-            return heldKarp.ProhledaniVsech(matice);
+            HeldKarp heldKarp = new HeldKarp(_matice, _n);
+            return heldKarp.ProhledatVse(_matice);
         }
         
-        /*
+        
         [Benchmark]
         public string HrubaSila()
         {
-            BruteForce bruteForce = new BruteForce(n);
-            bruteForce.Permutace(matice, 0);
+            BruteForce bruteForce = new BruteForce(_n);
+            bruteForce.GenerovatPermutace(_matice, 0);
             return bruteForce.Tisk();
         }
-        */
+        
         
     }
     
 
-    public class dvaAproximace
+    public class DvaAproximace
     {
 
-        private List<int>[] sousedi {  get; set; }
-        private int[] vzdalenost {  get; set; }
-        private bool[] vKostre { get; set; }
-        private int[,] _matice { get; }
+        private List<int>[] Sousedi {  get; set; }
+        private int[] Vzdalenost {  get; set; }
+        private bool[] VKostre { get; set; }
+        private int[,] Matice { get; }
         public int Delka {  get; set; }
         public string Cesta { get; set; }
 
-        public dvaAproximace(int n, int[,] matice) // kvadratický čas, ale kružnice může být nejhůře 2krát dlouhá
+        public DvaAproximace(int n, int[,] matice) // kvadratický čas, ale kružnice může být nejhůře 2krát dlouhá
         {
-            vzdalenost = new int[n];
-            vKostre = new bool[n];
-            sousedi = new List<int>[n];
+            Vzdalenost = new int[n];
+            VKostre = new bool[n];
+            Sousedi = new List<int>[n];
             Delka = 0;
-            _matice = matice;
+            Matice = matice;
             for (int i = 0; i < n; i++)
             {
-                vzdalenost[i] = int.MaxValue;
-                vKostre[i] = false;
-                sousedi[i] = new List<int>();
+                Vzdalenost[i] = int.MaxValue;
+                VKostre[i] = false;
+                Sousedi[i] = new List<int>();
             }
         }
-        private int najdiMin(int k, int[] ints, bool[] bools)
+        private int NajdiMin(int k, int[] vzdalenosti, bool[] navstiveno)
         {
             int min = int.MaxValue;
             int minIndex = -1;
             for (int i = 0; i < k; i++)
             {
-                if (!bools[i] && ints[i] < min)
+                if (!navstiveno[i] && vzdalenosti[i] < min)
                 {
-                    min = ints[i];
+                    min = vzdalenosti[i];
                     minIndex = i;
                 }
             }
             return minIndex;
         }
 
-        public void Jarnik(int n)
+        public void AlgoritmusJarnik(int n)
         {
             int[] rodic = new int[n];
             rodic[0] = -1;
-            vzdalenost[0] = 0;
+            Vzdalenost[0] = 0;
             for (int i = 0; i < n; i++)
             {
-                int m = najdiMin(n, vzdalenost, vKostre);
-                vKostre[m] = true;
+                int m = NajdiMin(n, Vzdalenost, VKostre);
+                VKostre[m] = true;
 
                 for (int j = 0; j < n; j++)
                 {
-                    if (_matice[m,j] != 0 && !vKostre[j] && _matice[m,j] < vzdalenost[j])
+                    if (Matice[m,j] != 0 && !VKostre[j] && Matice[m,j] < Vzdalenost[j])
                     {
-                        vzdalenost[j] = _matice[m, j];
+                        Vzdalenost[j] = Matice[m, j];
                         rodic[j] = m;
                     }
                 }
@@ -248,86 +248,86 @@ namespace rpAproximace
             {
                 if (rodic[i] != -1)
                 {
-                    sousedi[i].Add(rodic[i]);
-                    sousedi[rodic[i]].Add(i);
+                    Sousedi[i].Add(rodic[i]);
+                    Sousedi[rodic[i]].Add(i);
                 }
             }
         }
-        public void DFS()
+        public void SpustitDfs()
         {
             StringBuilder sb = new StringBuilder();
-            int[] stav = new int[sousedi.Length]; // 0 - nenalezený, 1 - nalezený,
-            int posledni = -1;
-            void _dfs(int n)
+            int[] stav = new int[Sousedi.Length]; // 0 - nenalezený, 1 - nalezený,
+            int posledniVrchol = -1;
+            void RekurzeDfs(int n)
             {
                 stav[n] = 1;
                 sb.Append(n + " ");
-                if (posledni != -1)
-                    Delka += _matice[posledni, n];
-                posledni = n;
-                foreach (int i in sousedi[n])
+                if (posledniVrchol != -1)
+                    Delka += Matice[posledniVrchol, n];
+                posledniVrchol = n;
+                foreach (int i in Sousedi[n])
                 {
                     if (stav[i] == 0)
-                        _dfs(i);
+                        RekurzeDfs(i);
                 }
             }
-            _dfs(0);
+            RekurzeDfs(0);
             sb.Append(0);
-            Delka += _matice[posledni, 0];
+            Delka += Matice[posledniVrchol, 0];
             Cesta = sb.ToString();
         }
     }
 
     public class HeldKarp  // úplné řešení v exponenciálním čase 
     {
-        private int[,] cesty { get; set; }
-        private int[,] rodic { get; set; }
-        private int velikost { get; }
-        private int n { get; }
+        private int[,] Cesty { get; set; }
+        private int[,] Rodic { get; set; }
+        private int Velikost { get; }
+        private int N { get; }
         public HeldKarp(int[,] matice, int m) 
         {
-            n = m;
-            velikost = (1 << n); //Navstivena mesta budu reprezentovat pomocí bitmasky 0-nenavstiveny 1-navstiveny 
-            cesty = new int[velikost, n]; // tabulka 2^n * n ve které je uložena délka cesty; pozice x označuje čislo té bitmasky a y je vrchol, ve kterém cesta končí
-            rodic = new int[velikost, n];
+            N = m;
+            Velikost = (1 << N); //Navstivena mesta budu reprezentovat pomocí bitmasky 0-nenavstiveny 1-navstiveny 
+            Cesty = new int[Velikost, N]; // tabulka 2^n * n ve které je uložena délka cesty; pozice x označuje čislo té bitmasky a y je vrchol, ve kterém cesta končí
+            Rodic = new int[Velikost, N];
 
-            for (int i = 0; i < velikost; i++)
-                for (int j = 0; j < n; j++)
+            for (int i = 0; i < Velikost; i++)
+                for (int j = 0; j < N; j++)
                 {
-                    cesty[i, j] = int.MaxValue/2;
-                    rodic[i, j] = -1;
+                    Cesty[i, j] = int.MaxValue/2;
+                    Rodic[i, j] = -1;
                 }
 
-            for (int i = 1; i < n; i++)
+            for (int i = 1; i < N; i++)
             {
                 int k = (1 << i) + 1;   //pro cislo 2 to bude 0101 to znamená že byl navstiven vrchol 0 a 2
-                cesty[k, i] = matice[0, i]; // nula to bude vždy protože začíná
-                rodic[k, i] = 0;
+                Cesty[k, i] = matice[0, i]; // nula to bude vždy protože začíná
+                Rodic[k, i] = 0;
             }
 
         }
 
-        public string ProhledaniVsech(int[,] matice)
+        public string ProhledatVse(int[,] matice)
         {
-            for (int maska = 1; maska < velikost; maska++)
+            for (int maska = 1; maska < Velikost; maska++)
             {
                 if ((maska & (1<<0)) == 0) // když bude na nulté pozici nula(nultý vrchol není součástí cesty) přeskočím
                     continue;
 
-                for (int i = 1; i < n; i++)
+                for (int i = 1; i < N; i++)
                 {
                     if((maska & (1<<i)) == 0)  // ještě potřebuji aby byl v masce druhý vrchol i
                         continue;
                     int predchoziMaska = maska ^ (1<<i); // udělá masku přechozí této(smaže z ní 1 an i-té pozici)
-                    for (int j = 0; j < n; j++)
+                    for (int j = 0; j < N; j++)
                     {
                         if ((predchoziMaska & (1<<j)) == 0)
                             continue;
-                        int novaVzdalenost = cesty[predchoziMaska, j] + matice[j,i]; //postupně přidávám cesty, pokud se do nichh dá nově dostat
-                        if (novaVzdalenost < cesty[maska, i])
+                        int novaVzdalenost = Cesty[predchoziMaska, j] + matice[j,i]; //postupně přidávám cesty, pokud se do nichh dá nově dostat
+                        if (novaVzdalenost < Cesty[maska, i])
                         {
-                            cesty[maska, i] = novaVzdalenost;
-                            rodic[maska, i] = j;
+                            Cesty[maska, i] = novaVzdalenost;
+                            Rodic[maska, i] = j;
                         }
 
                     }
@@ -337,11 +337,11 @@ namespace rpAproximace
 
             int minCesta = int.MaxValue;
             int aktualniVrchol = -1;
-            int vyslednaMaska = velikost - 1;
+            int vyslednaMaska = Velikost - 1;
 
-            for (int i = 1; i < n; i++)  // tady se vrátím cestou zpátky do vrcholu nula a najdu nejlepší variantu
+            for (int i = 1; i < N; i++)  // tady se vrátím cestou zpátky do vrcholu nula a najdu nejlepší variantu
             {
-                int plnaCesta = cesty[vyslednaMaska, i] + matice[i,0];
+                int plnaCesta = Cesty[vyslednaMaska, i] + matice[i,0];
                 if (plnaCesta < minCesta)
                 {
                     minCesta = plnaCesta;
@@ -354,7 +354,7 @@ namespace rpAproximace
             while (aktualniVrchol != 0)   // tady rekonstruuji cestu, což povede na optimální řešení
             {
                 sb.Append(aktualniVrchol + " ");
-                int dalsiVrchol = rodic[vyslednaMaska, aktualniVrchol];
+                int dalsiVrchol = Rodic[vyslednaMaska, aktualniVrchol];
                 vyslednaMaska = vyslednaMaska ^ (1 << aktualniVrchol); //vždy beru z aktualní masky, jdu 'pozpátku' a vždy smažu vrchol který jsem zapsal a přesunu se na jeho rodiče
                 aktualniVrchol = dalsiVrchol;
             }
@@ -367,66 +367,66 @@ namespace rpAproximace
     public class BruteForce
     {
         public int NejkratsiCesta { get; private set; }
-        private int[] vyslednaCesta { get; set; }
-        private int[] mesta { get; set; }
+        private int[] VyslednaCesta { get; set; }
+        private int[] Mesta { get; set; }
 
         public BruteForce(int n )
         {
-            mesta = new int[n - 1];
+            Mesta = new int[n - 1];
             NejkratsiCesta = int.MaxValue;
             for ( int i = 1; i < n ; i++ )
-                mesta[i - 1] = i;
-            vyslednaCesta = new int[n + 1];
+                Mesta[i - 1] = i;
+            VyslednaCesta = new int[n + 1];
         }
-        private void prohod(int n, int m)
+        private void Prohod(int n, int m)
         {
-            int l = mesta[n];
-            mesta[n] = mesta[m];
-            mesta[m] = l;
+            int docasna = Mesta[n];
+            Mesta[n] = Mesta[m];
+            Mesta[m] = docasna;
         }
         
-        private void vypocitaniCesty(int[,] ints)
+        private void VypocitejCestu(int[,] matice)
         {
             int cena = 0;
             int aktualniVrchol = 0;
-            foreach (int vrchol in mesta) //spočítám délku jedné dané cesty, začnu v nule
+            foreach (int vrchol in Mesta) //spočítám délku jedné dané cesty, začnu v nule
             {
-                cena += ints[aktualniVrchol, vrchol];
+                cena += matice[aktualniVrchol, vrchol];
                 aktualniVrchol = vrchol;
             }
 
-            cena += ints[aktualniVrchol, 0]; // a skončím v nule
+            cena += matice[aktualniVrchol, 0]; // a skončím v nule
 
             if (cena < NejkratsiCesta) // pokud je cesta kratší než jakákoliv dřív, přepíšu ji
             {
                 NejkratsiCesta = cena; 
-                for (int i = 0; i < mesta.Length; i++)  //potřebuji mít na první i na poslední pozici nulu
-                    vyslednaCesta[i + 1] = mesta[i];
+                for (int i = 0; i < Mesta.Length; i++)  //potřebuji mít na první i na poslední pozici nulu
+                    VyslednaCesta[i + 1] = Mesta[i];
             }
 
         }
 
-        public void Permutace(int[,] matice, int start)
+        public void GenerovatPermutace(int[,] matice, int start)
         {
-            if (start == mesta.Length)
+            if (start == Mesta.Length)
             {
-                vypocitaniCesty(matice);
+                VypocitejCestu(matice);
                 return;
             }
-            for (int i = start; i < mesta.Length; i++) // vždy mám zafixovaný start
+            for (int i = start; i < Mesta.Length; i++) // vždy mám zafixovaný start
             {
                 if (start != i)
-                    prohod(start, i); 
-                Permutace(matice, start + 1);
+                    Prohod(start, i); 
+                GenerovatPermutace(matice, start + 1);
                 if (start != i)
-                    prohod(start, i);
+                    Prohod(start, i);
             }
             
         }
         public string Tisk()
         {
             StringBuilder sb = new StringBuilder();
-            foreach (int vrchol in vyslednaCesta)
+            foreach (int vrchol in VyslednaCesta)
                 sb.Append(vrchol + " ");
             return sb.ToString();
         }

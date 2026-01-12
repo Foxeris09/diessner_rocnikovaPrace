@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("rpAproximace")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+609088e67ba869a8d3c1fc4072189bd1733f0abb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b9b1aec9e7b531a61f0848adb4f5f0a8f17c46c9")]
 [assembly: System.Reflection.AssemblyProductAttribute("rpAproximace")]
 [assembly: System.Reflection.AssemblyTitleAttribute("rpAproximace")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
